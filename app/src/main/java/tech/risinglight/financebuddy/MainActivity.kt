@@ -22,5 +22,8 @@ class MainActivity : AppCompatActivity() {
         expenseManagerCV.setOnClickListener {
             startActivity( Intent(applicationContext, ExpenseManagerActivity::class.java))
         }
+        card1.setOnClickListener {
+            startActivity( Intent(applicationContext, InvestmentActivity::class.java))
+        }
     }
 }

@@ -36,24 +36,44 @@ class ExpenseManagerActivity : AppCompatActivity() {
 
                     val matches = regex.findAll(message.body)
                     matches.forEach {
-                        val messagesModel = MessagesModel()
-                        messagesModel.amount = it.value
-                        messagesModel.time = (message.date).toString()
-                        messagesModel.purpose = message.number
-                        conversationModel.name = message.number
-                        name = message.number
-                        if (message.body.contains("debit") || message.body.contains("Debit") || message.body.contains(
+
+
+                        if (message.body.contains("debit") || message.body.contains("debited")
+                            || message.body.contains("Paid") ||
+                            message.body.contains("charged") ||message.body.contains(
+                                "Debit"
+                            ) || message.body.contains("DEBITED") || message.body.contains(
                                 "DEBIT"
                             )
                         ) {
-                            messagesModel.type = "debit"
-                        } else if (message.body.contains("credit") || message.body.contains("Credit") || message.body.contains(
-                                "CREDIT"
-                            )
-                        ) {
-                            messagesModel.type = "credit"
+                            if ((message.date.toString().contains("Dec") || message.date.toString().contains(
+                                    "Nov"
+                                ) )&& message.date.toString().contains("2019")
+                            ) {
+
+                                val messagesModel = MessagesModel()
+                                messagesModel.type = "debit"
+                                System.out.println("DEBIT")
+                                messagesModel.time = (message.date).toString()
+                                System.out.println(message.date.toString())
+                                messagesModel.purpose = message.number
+                                conversationModel.name = message.number
+                                messagesModel.amount = it.value
+                                name = message.number
+                                arrayList.add(messagesModel)
+                            }
                         }
-                        arrayList.add(messagesModel)
+//                        else if (message.body.contains("credit") || message.body.contains("Credit") ||message.body.contains("credited")  ||message.body.contains("CREDITED")  || message.body.contains(
+//                                "CREDIT"
+//                            )
+//                        ) {
+//                            messagesModel.type = "credit"
+//                            System.out.println("CREDIT")
+//                        }
+//
+//                        System.out.println(it.value)
+                        System.out.println("-----------------------------------------------------------------")
+
                     }
 
                 }
@@ -63,7 +83,8 @@ class ExpenseManagerActivity : AppCompatActivity() {
                         totalAmt += getAmount(message.amount!!)
                     }
                     conversationModel.messageList = arrayList
-                    conversationModel.amount = totalAmt.toString()
+                    conversationModel.amount =
+                        "Rs." + totalAmt.toString().subSequence(0, totalAmt.toString().length - 3) +"."+ totalAmt.toString().subSequence(totalAmt.toString().length - 2,totalAmt.toString().length )
                     convArrList.add(conversationModel)
                 }
             }
