@@ -1,4 +1,4 @@
-package tech.risinglight.financebuddy
+package tech.risinglight.financebuddy.model
 
 class ConversationModel {
     var name : String ? = null

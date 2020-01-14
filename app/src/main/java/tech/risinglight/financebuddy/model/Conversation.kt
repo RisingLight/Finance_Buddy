@@ -1,4 +1,4 @@
-package tech.risinglight.financebuddy
+package tech.risinglight.financebuddy.model
 
 import android.content.Context
 import android.provider.Telephony
@@ -21,7 +21,13 @@ fun getSmsConversation(context: Context, number: String? = null, completion: (co
         val body = cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Sms.BODY))
 
         numbers.add(number)
-        messages.add(Message(number, body, Date(smsDate.toLong())))
+        messages.add(
+            Message(
+                number,
+                body,
+                Date(smsDate.toLong())
+            )
+        )
     }
 
     cursor?.close()
@@ -29,7 +35,12 @@ fun getSmsConversation(context: Context, number: String? = null, completion: (co
     numbers.forEach { number ->
         if (results.find { it.number == number } == null) {
             val msg = messages.filter { it.number == number }
-            results.add(Conversation(number = number, message = msg))
+            results.add(
+                Conversation(
+                    number = number,
+                    message = msg
+                )
+            )
         }
     }
 

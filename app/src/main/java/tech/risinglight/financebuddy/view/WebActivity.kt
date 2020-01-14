@@ -1,8 +1,9 @@
-package tech.risinglight.financebuddy
+package tech.risinglight.financebuddy.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_web.*
+import tech.risinglight.financebuddy.R
 
 class WebActivity : AppCompatActivity() {
 

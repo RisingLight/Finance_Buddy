@@ -1,13 +1,16 @@
-package tech.risinglight.financebuddy
+package tech.risinglight.financebuddy.view
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_expense_manager.*
-import kotlinx.android.synthetic.main.conversation_row.*
 import kotlinx.coroutines.*
+import tech.risinglight.financebuddy.adapter.ConversationRecyclerViewAdapter
+import tech.risinglight.financebuddy.model.MessagesModel
+import tech.risinglight.financebuddy.R
+import tech.risinglight.financebuddy.model.getSmsConversation
+import tech.risinglight.financebuddy.model.ConversationModel
 
 
 class ExpenseManagerActivity : AppCompatActivity() {
@@ -30,7 +33,8 @@ class ExpenseManagerActivity : AppCompatActivity() {
     private suspend fun getConversations() = withContext(Dispatchers.IO) {
         getSmsConversation(applicationContext) { conversations ->
             conversations?.forEach { conversation ->
-                val conversationModel = ConversationModel()
+                val conversationModel =
+                    ConversationModel()
                 var name: String? = ""
                 conversation.message.forEach { message ->
 
@@ -40,7 +44,7 @@ class ExpenseManagerActivity : AppCompatActivity() {
 
                         if (message.body.contains("debit") || message.body.contains("debited")
                             || message.body.contains("Paid") ||
-                            message.body.contains("charged") ||message.body.contains(
+                            message.body.contains("charged") || message.body.contains(
                                 "Debit"
                             ) || message.body.contains("DEBITED") || message.body.contains(
                                 "DEBIT"
@@ -48,10 +52,11 @@ class ExpenseManagerActivity : AppCompatActivity() {
                         ) {
                             if ((message.date.toString().contains("Dec") || message.date.toString().contains(
                                     "Nov"
-                                ) )&& message.date.toString().contains("2019")
+                                )) && message.date.toString().contains("2019")
                             ) {
 
-                                val messagesModel = MessagesModel()
+                                val messagesModel =
+                                    MessagesModel()
                                 messagesModel.type = "debit"
                                 System.out.println("DEBIT")
                                 messagesModel.time = (message.date).toString()
@@ -84,7 +89,13 @@ class ExpenseManagerActivity : AppCompatActivity() {
                     }
                     conversationModel.messageList = arrayList
                     conversationModel.amount =
-                        "Rs." + totalAmt.toString().subSequence(0, totalAmt.toString().length - 3) +"."+ totalAmt.toString().subSequence(totalAmt.toString().length - 2,totalAmt.toString().length )
+                        "Rs." + totalAmt.toString().subSequence(
+                            0,
+                            totalAmt.toString().length - 3
+                        ) + "." + totalAmt.toString().subSequence(
+                            totalAmt.toString().length - 2,
+                            totalAmt.toString().length
+                        )
                     convArrList.add(conversationModel)
                 }
             }
@@ -104,7 +115,10 @@ class ExpenseManagerActivity : AppCompatActivity() {
 
     private suspend fun setAdapter(arrayList: ArrayList<ConversationModel>) =
         withContext(Dispatchers.Main) {
-            val adapter = ConversationRecyclerViewAdapter(arrayList)
+            val adapter =
+                ConversationRecyclerViewAdapter(
+                    arrayList
+                )
             rv.adapter = adapter
         }
 

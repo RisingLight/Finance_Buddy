@@ -3,7 +3,8 @@
     package="tech.risinglight.financebuddy">
 
     <uses-permission android:name="android.permission.READ_SMS" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,11 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WebActivity"></activity>
-        <activity android:name=".InvestmentActivity" />
-        <activity android:name=".MessageActivity" />
-        <activity android:name=".ExpenseManagerActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".view.WebActivity"/>
+        <activity android:name=".view.InvestmentActivity" />
+        <activity android:name=".view.MessageActivity" />
+        <activity android:name=".view.ExpenseManagerActivity" />
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

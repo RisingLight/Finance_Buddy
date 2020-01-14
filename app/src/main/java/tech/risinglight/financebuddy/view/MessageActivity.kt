@@ -1,7 +1,8 @@
-package tech.risinglight.financebuddy
+package tech.risinglight.financebuddy.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import tech.risinglight.financebuddy.R
 
 class MessageActivity : AppCompatActivity() {
 

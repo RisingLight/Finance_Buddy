@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -35,7 +36,7 @@ dependencies {
 
     // MATERIAL LIBRARIES
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'com.google.android.material:material:1.2.0-alpha01'
+    implementation 'com.google.android.material:material:1.2.0-alpha03'
 
     // LOTTIE
     implementation 'com.airbnb.android:lottie:3.1.0'
@@ -52,6 +53,9 @@ dependencies {
     // Chart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
+    // ROOM
+    implementation "android.arch.persistence.room:runtime:1.1.1"
+    kapt "android.arch.persistence.room:compiler:1.1.1"
     // COROUTINES
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.2'
@@ -59,5 +63,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
 }

@@ -1,4 +1,4 @@
-package tech.risinglight.financebuddy
+package tech.risinglight.financebuddy.adapter
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.github.mikephil.charting.charts.PieChart
-import com.github.mikephil.charting.data.PieData
+import tech.risinglight.financebuddy.R
+import tech.risinglight.financebuddy.model.ConversationModel
+import tech.risinglight.financebuddy.view.MessageActivity
 import java.util.*
 
 class ConversationRecyclerViewAdapter(private val conversationModelList: ArrayList<ConversationModel>) :
