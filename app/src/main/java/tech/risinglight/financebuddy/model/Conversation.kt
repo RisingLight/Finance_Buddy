@@ -8,9 +8,12 @@ import kotlin.collections.ArrayList
 class Conversation(val number: String, val message: List<Message>)
 class Message(val number: String, val body: String, val date: Date)
 
-fun getSmsConversation(context: Context, number: String? = null, completion: (conversations: List<Conversation>?) -> Unit) {
+fun getSmsConversation(
+    context: Context,
+    number: String? = null,
+    completion: (conversations: List<Conversation>?) -> Unit
+) {
     val cursor = context.contentResolver.query(Telephony.Sms.CONTENT_URI, null, null, null, null)
-
     val numbers = ArrayList<String>()
     val messages = ArrayList<Message>()
     var results = ArrayList<Conversation>()

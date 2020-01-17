@@ -51,7 +51,7 @@ class ExpenseManagerActivity : AppCompatActivity() {
                             )
                         ) {
                             if ((message.date.toString().contains("Dec") || message.date.toString().contains(
-                                    "Nov"
+                                    "Jan"
                                 )) && message.date.toString().contains("2019")
                             ) {
 
