@@ -86,10 +86,13 @@ class MainActivity : AppCompatActivity() {
             val matches = regex.findAll(message.body)
             matches.forEach {
 
-                if ( message.date.toString().contains("2020")
+                if (message.date.toString().contains("2020")
                 ) {
                     if (message.body.contains("debit") || message.body.contains("debited")
                         || message.body.contains("Paid") ||
+                        message.body.contains("sent") ||
+                        message.body.contains("paid") ||
+                        message.body.contains("Sent") ||
                         message.body.contains("charged") || message.body.contains(
                             "Debit"
                         ) || message.body.contains("DEBITED") || message.body.contains(
@@ -102,7 +105,10 @@ class MainActivity : AppCompatActivity() {
 
                     } else if (message.body.contains("credit") || message.body.contains("Credit") || message.body.contains(
                             "credited"
-                        ) || message.body.contains("CREDITED") || message.body.contains(
+                        ) ||
+                        message.body.contains("received") || message.body.contains("Received") || message.body.contains(
+                            "CREDITED"
+                        ) || message.body.contains(
                             "CREDIT"
                         )
                     ) {
@@ -112,7 +118,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-      // TODO add adapter:
+        // TODO add adapter:
         sheetRV.layoutManager = LinearLayoutManager(context)
         sheetRV.adapter = TransactionsRecyclerViewAdapter(transactions)
     }
