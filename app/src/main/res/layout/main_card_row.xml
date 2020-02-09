@@ -15,6 +15,7 @@
         android:background="@drawable/ic_liquid_cheese"
        >
         <TextView
+            android:id="@+id/cardNumberTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -33,11 +34,11 @@
             android:text="Balance"
             android:textColor="@android:color/white"
             android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/textView8"
+            app:layout_constraintBottom_toTopOf="@+id/amountTV"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/amountTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"

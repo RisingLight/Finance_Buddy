@@ -8,11 +8,14 @@ import android.provider.Telephony
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.android.synthetic.main.bottom_sheet_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import tech.risinglight.financebuddy.R
+import tech.risinglight.financebuddy.adapter.CardRecyclerAdapter
 import tech.risinglight.financebuddy.adapter.TransactionsRecyclerViewAdapter
+import tech.risinglight.financebuddy.model.CardDetailsModel
 import tech.risinglight.financebuddy.model.Message
 import tech.risinglight.financebuddy.model.Transaction
 import java.util.*
@@ -31,6 +34,21 @@ class MainActivity : AppCompatActivity() {
         }
         investmentCV.setOnClickListener {
             startActivity(Intent(applicationContext, InvestmentActivity::class.java))
+        }
+        val linearLayoutManager = LinearLayoutManager(this,RecyclerView.HORIZONTAL,false)
+        val listCard: ArrayList<CardDetailsModel> = ArrayList()
+        var cardDetailsModel1 = CardDetailsModel(1,403012451245,"$1000","Kotak")
+        var cardDetailsModel2 = CardDetailsModel(1,403012451245,"$1000","Kotak")
+        var cardDetailsModel3 = CardDetailsModel(1,403012451245,"$1000","Kotak")
+        listCard.add(cardDetailsModel1)
+        listCard.add(cardDetailsModel2)
+        listCard.add(cardDetailsModel3)
+        val adapter  = CardRecyclerAdapter(cardDetailsModelArrayList = listCard)
+        recyclerView.layoutManager = linearLayoutManager
+        recyclerView.adapter = adapter
+        splitwiseCV.setOnClickListener {
+            val intent = Intent(applicationContext, SplitwiseActivity::class.java)
+            startActivity(intent)
         }
         addbottomSheetCallBack()
         getTransactions(applicationContext)
