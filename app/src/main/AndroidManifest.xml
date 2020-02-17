@@ -12,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddCardActivity"></activity>
+        <activity
+            android:name=".CouponsActivity"
+            android:label="@string/title_activity_coupons"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".AddCardActivity" />
         <activity android:name=".UpiPaymentActivity" />
         <activity android:name=".view.SplitwiseActivity" />
         <activity android:name=".view.WebActivity" />

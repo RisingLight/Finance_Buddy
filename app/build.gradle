@@ -51,6 +51,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.0.1'
     // GLIDE
     implementation 'com.github.bumptech.glide:glide:4.10.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
 
     // Chart

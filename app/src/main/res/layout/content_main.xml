@@ -134,6 +134,7 @@
             app:cardCornerRadius="10dp">
 
             <ImageView
+                android:id="@+id/couponBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:background="@drawable/custom_button_option_view"

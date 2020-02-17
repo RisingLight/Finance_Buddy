@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.android.synthetic.main.bottom_sheet_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import tech.risinglight.financebuddy.CouponsActivity
 import tech.risinglight.financebuddy.R
 import tech.risinglight.financebuddy.adapter.CardRecyclerAdapter
 import tech.risinglight.financebuddy.adapter.TransactionsRecyclerViewAdapter
@@ -49,6 +50,9 @@ class MainActivity : AppCompatActivity() {
         splitwiseCV.setOnClickListener {
             val intent = Intent(applicationContext, SplitwiseActivity::class.java)
             startActivity(intent)
+        }
+        couponBtn.setOnClickListener {
+            startActivity(Intent(applicationContext,CouponsActivity::class.java))
         }
         addbottomSheetCallBack()
         getTransactions(applicationContext)
