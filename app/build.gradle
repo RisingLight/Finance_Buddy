@@ -56,6 +56,9 @@ dependencies {
     // Chart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
+    // UPI
+    implementation 'com.shreyaspatil:EasyUpiPayment:2.0'
+
     // ROOM
     implementation 'androidx.room:room-runtime:2.2.3'
     kapt 'androidx.room:room-compiler:2.2.3'
