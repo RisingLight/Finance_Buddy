@@ -1,12 +1,16 @@
 package tech.risinglight.financebuddy.view
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.Telephony
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -62,8 +66,21 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(applicationContext, CouponsActivity::class.java))
         }
         addbottomSheetCallBack()
+        if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.READ_SMS)
+            != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                arrayOf(Manifest.permission.READ_SMS),0)
+            GlobalScope.launch {
+                getTransactions(applicationContext)
+
+            } }
+        else
+        {
         GlobalScope.launch {
-            getTransactions(applicationContext)
+
+                getTransactions(applicationContext)
+            }
+
         }
     }
 

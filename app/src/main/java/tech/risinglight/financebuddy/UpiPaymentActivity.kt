@@ -16,6 +16,8 @@ class UpiPaymentActivity : AppCompatActivity() {
             upi_idET.setText(intent.getStringExtra("UPI"))
 
         }
+        val des= if (noteET.text.toString().isNullOrEmpty()) else "Finance buddy"
+
         payBtn.setOnClickListener {
             val amount =
                 if (amountET.text.toString().contains('.')) amountET.text.toString() else amountET.text.toString() + ".00"
@@ -23,7 +25,7 @@ class UpiPaymentActivity : AppCompatActivity() {
             val easyUpiPayment = EasyUpiPayment.Builder()
                 .with(this)
                 .setPayeeVpa(upi_idET.text.toString())
-                .setPayeeName("")
+                .setPayeeName("via Finance Buddy")
                 .setTransactionId(random.nextInt().toString())
                 .setTransactionRefId(random.nextInt().toString())
                 .setDescription(noteET.text.toString())

@@ -17,5 +17,7 @@ interface CardDao{
     @Query("DELETE from cardDetails")
     fun deleteAll()
 
+    @Insert
+    fun insert(splitWiseDetail: CardDetailsModel) : Long
 
 }

@@ -11,11 +11,7 @@ import androidx.core.content.ContextCompat
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.READ_SMS)
-            != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                arrayOf(Manifest.permission.READ_SMS),0)
-        }
+
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
