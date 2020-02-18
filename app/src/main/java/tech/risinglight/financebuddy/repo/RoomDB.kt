@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import tech.risinglight.financebuddy.model.CardDetailsModel
 
-@Database(entities = arrayOf(CardDetailsModel::class), version = 1, exportSchema = false)
+@Database(entities = [CardDetailsModel::class], version = 1, exportSchema = false)
 abstract class RoomDB : RoomDatabase() {
     abstract fun cardDataRepo(): CardDao
 
@@ -17,10 +17,9 @@ abstract class RoomDB : RoomDatabase() {
             if (INSTANCE == null) {
                 synchronized(RoomDB::class) {
                     INSTANCE = Room.databaseBuilder(
-                        context.getApplicationContext(),
-                        RoomDB::class.java, "card.db"
-                    )
-                        .build()
+                        context.applicationContext,
+                        RoomDB::class.java, "financebuddy"
+                    ).build()
                 }
             }
             return INSTANCE

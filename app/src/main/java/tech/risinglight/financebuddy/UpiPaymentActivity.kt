@@ -12,7 +12,10 @@ class UpiPaymentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upi_payment)
+        if (intent != null) {
+            upi_idET.setText(intent.getStringExtra("UPI"))
 
+        }
         payBtn.setOnClickListener {
             val amount =
                 if (amountET.text.toString().contains('.')) amountET.text.toString() else amountET.text.toString() + ".00"

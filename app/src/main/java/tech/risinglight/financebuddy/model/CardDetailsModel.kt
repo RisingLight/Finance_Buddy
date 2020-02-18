@@ -1,21 +1,22 @@
 package tech.risinglight.financebuddy.model
 
+import android.provider.ContactsContract
 import androidx.annotation.NonNull
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
-
 @Entity(tableName = "cardDetails")
-class CardDetailsModel(
-    id: Long,
-    cardNumber: Long,
-    accountBalance: String,
-    bankName: String
-) {
-    @PrimaryKey(autoGenerate = true)
+class CardDetailsModel{
+    @PrimaryKey
     @NonNull
-     var id: Long = id
-     var cardNumber: Long= cardNumber
-     var accountBalance: String= accountBalance
-     var bankName: String = bankName
+    var upiId: String? = null
+    var nickname: String?=null
 
+    constructor(
+        upiId : String,
+        nickname: String
+    ){
+        this.upiId = upiId
+        this.nickname = nickname
+    }
 }

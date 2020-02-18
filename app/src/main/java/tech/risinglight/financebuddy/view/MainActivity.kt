@@ -12,23 +12,24 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.android.synthetic.main.bottom_sheet_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers.IO
+import tech.risinglight.financebuddy.AddCardActivity
 import tech.risinglight.financebuddy.CouponsActivity
 import tech.risinglight.financebuddy.R
 import tech.risinglight.financebuddy.adapter.CardRecyclerAdapter
 import tech.risinglight.financebuddy.adapter.TransactionsRecyclerViewAdapter
-import tech.risinglight.financebuddy.model.CardDetailsModel
 import tech.risinglight.financebuddy.model.Message
+import tech.risinglight.financebuddy.repo.Repo
 import tech.risinglight.financebuddy.model.Transaction
 import java.util.*
 import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         bottom_sheet.setBackgroundResource(R.drawable.custom_card_round)
         expenseManagerCV.setOnClickListener {
             startActivity(Intent(applicationContext, ExpenseManagerActivity::class.java))
@@ -36,26 +37,34 @@ class MainActivity : AppCompatActivity() {
         investmentCV.setOnClickListener {
             startActivity(Intent(applicationContext, InvestmentActivity::class.java))
         }
-        val linearLayoutManager = LinearLayoutManager(this,RecyclerView.HORIZONTAL,false)
-        val listCard: ArrayList<CardDetailsModel> = ArrayList()
-        var cardDetailsModel1 = CardDetailsModel(1,403012451245,"$1000","Kotak")
-        var cardDetailsModel2 = CardDetailsModel(1,403012451245,"$1000","Kotak")
-        var cardDetailsModel3 = CardDetailsModel(1,403012451245,"$1000","Kotak")
-        listCard.add(cardDetailsModel1)
-        listCard.add(cardDetailsModel2)
-        listCard.add(cardDetailsModel3)
-        val adapter  = CardRecyclerAdapter(cardDetailsModelArrayList = listCard)
-        recyclerView.layoutManager = linearLayoutManager
-        recyclerView.adapter = adapter
+        val linearLayoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+
+        val repo = Repo(application)
+
+        repo.getAll().observe(this, androidx.lifecycle.Observer {
+            val adapter = CardRecyclerAdapter(it)
+            recyclerView.layoutManager = linearLayoutManager
+            recyclerView.adapter = adapter
+        })
+
+
+//        print("Sizeeeeee "+repo.getAll().value!!.size)
+
         splitwiseCV.setOnClickListener {
             val intent = Intent(applicationContext, SplitwiseActivity::class.java)
             startActivity(intent)
         }
+
+        upiCardBtn.setOnClickListener {
+            startActivity(Intent(applicationContext, AddCardActivity::class.java))
+        }
         couponBtn.setOnClickListener {
-            startActivity(Intent(applicationContext,CouponsActivity::class.java))
+            startActivity(Intent(applicationContext, CouponsActivity::class.java))
         }
         addbottomSheetCallBack()
-        getTransactions(applicationContext)
+        GlobalScope.launch {
+            getTransactions(applicationContext)
+        }
     }
 
     private fun addbottomSheetCallBack() {
@@ -90,7 +99,9 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    fun getTransactions(context: Context) {
+    private suspend fun getTransactions(context: Context) = withContext(IO) {
+
+
         val cursor =
             context.contentResolver.query(Telephony.Sms.CONTENT_URI, null, null, null, null)
         val messages = ArrayList<Message>()
@@ -122,7 +133,8 @@ class MainActivity : AppCompatActivity() {
                         )
                     ) {
 
-                        val transaction = Transaction(message.number, it.value, message.date, false)
+                        val transaction =
+                            Transaction(message.number, it.value, message.date, false)
                         transactions.add(transaction)
 
                     } else if (message.body.contains("credit") || message.body.contains("Credit") || message.body.contains(
@@ -134,15 +146,21 @@ class MainActivity : AppCompatActivity() {
                             "CREDIT"
                         )
                     ) {
-                        val transaction = Transaction(message.number, it.value, message.date, true)
+                        val transaction =
+                            Transaction(message.number, it.value, message.date, true)
                         transactions.add(transaction)
                     }
                 }
             }
         }
-        // TODO add adapter:
-        sheetRV.layoutManager = LinearLayoutManager(context)
-        sheetRV.adapter = TransactionsRecyclerViewAdapter(transactions)
+        setBottomAdapters(context, transactions)
     }
+
+    private suspend fun setBottomAdapters(context: Context, transactions: ArrayList<Transaction>) =
+        withContext(Dispatchers.Main) {
+            sheetRV.layoutManager = LinearLayoutManager(context)
+            sheetRV.adapter = TransactionsRecyclerViewAdapter(transactions)
+        }
 }
+
 

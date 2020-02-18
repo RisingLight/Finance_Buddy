@@ -7,8 +7,8 @@ import androidx.fragment.app.FragmentPagerAdapter
 import tech.risinglight.financebuddy.R
 
 private val TAB_TITLES = arrayOf(
-    R.string.tab_text_1,
-    R.string.tab_text_2
+    R.string.electronic, R.string.food, R.string.clothing,
+    R.string.movie, R.string.medicine
 )
 
 /**
@@ -30,6 +30,6 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
 
     override fun getCount(): Int {
         // Show 2 total pages.
-        return 2
+        return 5
     }
 }

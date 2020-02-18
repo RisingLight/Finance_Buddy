@@ -9,8 +9,20 @@ import androidx.lifecycle.ViewModelProvider
 class PageViewModel : ViewModel() {
 
     private val _index = MutableLiveData<Int>()
-    val text: LiveData<String> = Transformations.map(_index) {
-        "Hello world from section: $it"
+    val text: LiveData<Int> = Transformations.map(_index) {
+        it
+    }
+
+    fun getWebsite(index: Int): String {
+        when (index) {
+            1 -> return "https://www.grabon.in/electronics-coupons/"
+            2 -> return "https://www.coupondunia.in/category/food-and-dining"
+            3 -> return "https://www.grabon.in/clothing-coupons/"
+            4 -> return "https://www.grabon.in/movie-tickets-coupons/"
+            5 -> return "https://www.grabon.in/medicines-coupons/"
+        }
+
+        return "https://www.grabon.in/electronics-coupons/"
     }
 
     fun setIndex(index: Int) {

@@ -4,4 +4,9 @@
     <string name="title_activity_coupons">CouponsActivity</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+    <string name="electronic">Electronics</string>
+    <string name="food">Food</string>
+    <string name="clothing">Clothing</string>
+    <string name="movie">Movie</string>
+    <string name="medicine">Medicine</string>
 </resources>
