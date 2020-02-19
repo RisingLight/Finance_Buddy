@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import tech.risinglight.financebuddy.model.CardDetailsModel
+import tech.risinglight.financebuddy.model.SplitWiseModel
 
 @Dao
 interface CardDao{
@@ -18,6 +19,6 @@ interface CardDao{
     fun deleteAll()
 
     @Insert
-    fun insert(splitWiseDetail: CardDetailsModel) : Long
+    fun insert(splitWiseDetail: SplitWiseModel) : Long
 
 }

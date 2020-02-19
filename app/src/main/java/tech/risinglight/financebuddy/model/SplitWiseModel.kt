@@ -6,24 +6,24 @@ import androidx.room.PrimaryKey
 import java.lang.reflect.Constructor
 import java.util.*
 
-@Entity(tableName ="splitmodel")
+@Entity(tableName ="splitModel")
 class SplitWiseModel {
     @PrimaryKey
     @NonNull
     var emailId: String? = null
     var name: String? = null
     var amount: String? = null
-    var transactionsList: ArrayList<Transaction>
+   // var transactionsList: ArrayList<Transaction>
 
     constructor(
         emailId: String,
         name: String,
-        amount: String,
-
+        amount: String
+      //  transactionsList : ArrayList<Transaction>
         ) {
         this.emailId = emailId
         this.name = name
         this.amount = amount
-
+       // this.transactionsList = transactionsList
     }
 }

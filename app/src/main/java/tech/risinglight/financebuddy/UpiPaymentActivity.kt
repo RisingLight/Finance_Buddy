@@ -16,7 +16,7 @@ class UpiPaymentActivity : AppCompatActivity() {
             upi_idET.setText(intent.getStringExtra("UPI"))
 
         }
-        val des= if (noteET.text.toString().isNullOrEmpty()) else "Finance buddy"
+        val des= if (noteET.text.toString().isNullOrEmpty()) noteET.text.toString() else "Finance buddy"
 
         payBtn.setOnClickListener {
             val amount =

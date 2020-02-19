@@ -5,8 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import tech.risinglight.financebuddy.model.CardDetailsModel
+import tech.risinglight.financebuddy.model.SplitWiseModel
 
-@Database(entities = [CardDetailsModel::class], version = 1, exportSchema = false)
+@Database(entities = [CardDetailsModel::class, SplitWiseModel::class], version = 1, exportSchema = false)
 abstract class RoomDB : RoomDatabase() {
     abstract fun cardDataRepo(): CardDao
 
