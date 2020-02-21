@@ -33,20 +33,20 @@ class NewsActivity : AppCompatActivity() {
             .build()
         val retrofitClient: RetrofitClient = retrofit.create(RetrofitClient::class.java)
         val call = retrofitClient.getArticle()
-        call.enqueue(object : Callback<Article> {
-            override fun onFailure(call: Call<Article>, t: Throwable) {
-                Log.d("Response", "Error")
-            }
-
-            override fun onResponse(call: Call<Article>, response: Response<Article>) {
-                if (response.isSuccessful) {
-                    val videoListAdapter =
-                        VideoListRVAdapter(response.body()!!.videoList!!.toMutableList())
-                    recyclerView.adapter = videoListAdapter
-
-                }
-            }
-        })
-    }
+//        call.enqueue(object : Callback<Article> {
+//            override fun onFailure(call: Call<Article>, t: Throwable) {
+//                Log.d("Response", "Error")
+//            }
+//
+//            override fun onResponse(call: Call<Article>, response: Response<Article>) {
+//                if (response.isSuccessful) {
+//                    val videoListAdapter =
+//                        VideoListRVAdapter(response.body()!!.videoList!!.toMutableList())
+//                    recyclerView.adapter = videoListAdapter
+//
+//                }
+//            }
+//        })
+//    }
 
 }
