@@ -1,5 +1,6 @@
 package tech.risinglight.financebuddy.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import tech.risinglight.financebuddy.R
 import tech.risinglight.financebuddy.model.Article
+import tech.risinglight.financebuddy.view.NewsDetailsActivity
 
 class NewsRecyclerAdapter(private val articleList: List<Article>) :
     RecyclerView.Adapter<NewsRecyclerAdapter.ViewHolder>() {
@@ -33,6 +35,10 @@ class NewsRecyclerAdapter(private val articleList: List<Article>) :
             .load(currentArticle.urlToImage)
             .into(holder.image)
         holder.container.setOnClickListener {
+            val intent = Intent(holder.container.context,NewsDetailsActivity::class.java)
+            intent.putExtra("title",currentArticle.title)
+            intent.putExtra("desc", currentArticle.content)
+            holder.container.context.startActivity(intent)
 
         }
     }

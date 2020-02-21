@@ -7,6 +7,9 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:textAlignment="center"
+        android:textSize="26sp"
+        android:textStyle="bold"
         android:text="NEWS" />
 
     <androidx.recyclerview.widget.RecyclerView

@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.AddSplitwiseActivity"></activity>
+        <activity android:name=".view.NewsDetailsActivity"></activity>
+        <activity android:name=".view.AddSplitwiseActivity" />
         <activity android:name=".view.MessageDetails" />
         <activity android:name=".view.NewsActivity" />
         <activity
