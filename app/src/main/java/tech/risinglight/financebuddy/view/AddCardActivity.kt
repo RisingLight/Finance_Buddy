@@ -1,4 +1,4 @@
-package tech.risinglight.financebuddy
+package tech.risinglight.financebuddy.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,7 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import tech.risinglight.financebuddy.R
 import tech.risinglight.financebuddy.model.CardDetailsModel
 import tech.risinglight.financebuddy.repo.Repo
 import tech.risinglight.financebuddy.repo.RoomDB

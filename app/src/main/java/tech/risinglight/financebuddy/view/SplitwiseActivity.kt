@@ -1,5 +1,6 @@
 package tech.risinglight.financebuddy.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,6 +10,7 @@ import tech.risinglight.financebuddy.R
 import tech.risinglight.financebuddy.adapter.SplitwiseRecyclerAdapter
 import tech.risinglight.financebuddy.model.SplitWiseModel
 import tech.risinglight.financebuddy.model.Transaction
+import tech.risinglight.financebuddy.repo.Repo
 
 class SplitwiseActivity : AppCompatActivity() {
 
@@ -16,16 +18,12 @@ class SplitwiseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splitwise)
         val linearLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-       val listSW: ArrayList<SplitWiseModel> = ArrayList()
-//        val transactionList: ArrayList<Transaction> = ArrayList()
-        var swModel1 = SplitWiseModel("abhijit@gmail.com","Abhijit", "Rs 200")
-        var swModel2 = SplitWiseModel("abhishek@gmail.com","Abhishek", "Rs 240")
-        var swModel3 = SplitWiseModel("abhinay@gmail.com","Abhinay", "Rs 100")
-        listSW.add(swModel1)
-        listSW.add(swModel2)
-        listSW.add(swModel3)
-        val adapter = SplitwiseRecyclerAdapter(splitwiseModelArrayList = listSW)
+            val repo = Repo(application)
+        val adapter = SplitwiseRecyclerAdapter(repo.getAllSW())
         splitWiseRV.layoutManager = linearLayoutManager
         splitWiseRV.adapter = adapter
+        splitwiseFab.setOnClickListener {
+            startActivity(Intent(applicationContext,AddSplitwiseActivity::class.java))
+        }
     }
 }

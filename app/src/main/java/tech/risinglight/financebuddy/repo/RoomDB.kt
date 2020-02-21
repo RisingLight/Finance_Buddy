@@ -1,15 +1,15 @@
 package tech.risinglight.financebuddy.repo
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
 import tech.risinglight.financebuddy.model.CardDetailsModel
 import tech.risinglight.financebuddy.model.SplitWiseModel
+import tech.risinglight.financebuddy.model.TransactionTypeConverter
 
 @Database(entities = [CardDetailsModel::class, SplitWiseModel::class], version = 1, exportSchema = false)
+@TypeConverters(TransactionTypeConverter::class)
 abstract class RoomDB : RoomDatabase() {
-    abstract fun cardDataRepo(): CardDao
+    abstract fun cardDataRepo(): FBDao
 
     companion object {
         private var INSTANCE: RoomDB? = null
@@ -20,7 +20,7 @@ abstract class RoomDB : RoomDatabase() {
                     INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
                         RoomDB::class.java, "financebuddy"
-                    ).build()
+                    ).allowMainThreadQueries().build()
                 }
             }
             return INSTANCE

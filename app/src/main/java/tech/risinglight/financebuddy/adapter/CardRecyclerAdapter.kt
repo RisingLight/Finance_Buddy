@@ -5,13 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import tech.risinglight.financebuddy.R
-import tech.risinglight.financebuddy.UpiPaymentActivity
+import tech.risinglight.financebuddy.view.UpiPaymentActivity
 import tech.risinglight.financebuddy.model.CardDetailsModel
-import java.util.*
 
 class CardRecyclerAdapter(private val cardDetailsModelArrayList: List<CardDetailsModel>) :
     RecyclerView.Adapter<CardRecyclerAdapter.ViewHolder>() {

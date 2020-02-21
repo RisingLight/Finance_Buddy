@@ -13,14 +13,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".NewsActivity"></activity>
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".view.AddSplitwiseActivity"></activity>
+        <activity android:name=".view.MessageDetails" />
+        <activity android:name=".view.NewsActivity" />
         <activity
-            android:name=".CouponsActivity"
+            android:name=".view.CouponsActivity"
             android:label="@string/title_activity_coupons"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AddCardActivity" />
-        <activity android:name=".UpiPaymentActivity" />
+        <activity android:name=".view.AddCardActivity" />
+        <activity android:name=".view.UpiPaymentActivity" />
         <activity android:name=".view.SplitwiseActivity" />
         <activity android:name=".view.WebActivity" />
         <activity android:name=".view.InvestmentActivity" />

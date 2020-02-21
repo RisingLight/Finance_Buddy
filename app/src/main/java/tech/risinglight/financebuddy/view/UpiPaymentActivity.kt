@@ -1,9 +1,10 @@
-package tech.risinglight.financebuddy
+package tech.risinglight.financebuddy.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.shreyaspatil.EasyUpiPayment.EasyUpiPayment
 import kotlinx.android.synthetic.main.activity_upi_payment.*
+import tech.risinglight.financebuddy.R
 import kotlin.random.Random
 
 

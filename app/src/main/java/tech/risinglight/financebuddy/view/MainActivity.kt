@@ -18,8 +18,6 @@ import kotlinx.android.synthetic.main.bottom_sheet_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
-import tech.risinglight.financebuddy.AddCardActivity
-import tech.risinglight.financebuddy.CouponsActivity
 import tech.risinglight.financebuddy.R
 import tech.risinglight.financebuddy.adapter.CardRecyclerAdapter
 import tech.risinglight.financebuddy.adapter.TransactionsRecyclerViewAdapter
@@ -41,6 +39,9 @@ class MainActivity : AppCompatActivity() {
         investmentCV.setOnClickListener {
             startActivity(Intent(applicationContext, InvestmentActivity::class.java))
         }
+        newsCV.setOnClickListener {
+            startActivity(Intent(applicationContext, NewsActivity::class.java))
+        }
         val linearLayoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
 
         val repo = Repo(application)
@@ -50,9 +51,6 @@ class MainActivity : AppCompatActivity() {
             recyclerView.layoutManager = linearLayoutManager
             recyclerView.adapter = adapter
         })
-
-
-//        print("Sizeeeeee "+repo.getAll().value!!.size)
 
         splitwiseCV.setOnClickListener {
             val intent = Intent(applicationContext, SplitwiseActivity::class.java)
@@ -67,16 +65,18 @@ class MainActivity : AppCompatActivity() {
         }
         addbottomSheetCallBack()
         if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.READ_SMS)
-            != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                arrayOf(Manifest.permission.READ_SMS),0)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.READ_SMS), 0
+            )
             GlobalScope.launch {
                 getTransactions(applicationContext)
 
-            } }
-        else
-        {
-        GlobalScope.launch {
+            }
+        } else {
+            GlobalScope.launch {
 
                 getTransactions(applicationContext)
             }
